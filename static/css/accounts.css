@@ -1,0 +1,17 @@
+body {
+    background-image: url(../img/shattered.png);
+  }
+  
+  .logo {
+    font-family: 'Ultra',serif;
+  }
+  
+  .logo a {
+    color: rgba(47, 124, 99, 0.733);
+  }
+  
+  .logo a:hover,
+  .logo a:active {
+    text-decoration: underline;
+  }
+
