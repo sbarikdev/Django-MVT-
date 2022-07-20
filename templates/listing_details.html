@@ -27,7 +27,7 @@
                             {% if obj.image %}
                             <img src="http://127.0.0.1:8000{{obj.image.url}}"></img>
                             {% else %}
-                            <td><p> No image </p></td>
+                            <p> No image </p>
                             {% endif %}
                         </div>
                         <!-- <div class="carousel-item">
@@ -47,12 +47,15 @@
                 <div class="h-100 bg-light p-30">
                     <h3>Name: {{ obj.subject }}</h3>
                     <h4 class="font-weight-semi-bold mb-4">Age: {{ obj.age }} years old</h4>
-                    <p class="mb-4">Volup erat ipsum diam elitr rebum et dolor. Est nonumy elitr erat diam stet sit
-                        clita ea. Sanc ipsum et, labore clita lorem magna duo dolor no sea
-                        Nonumy</p>
+                    {% if obj.description %}
+                    <p class="mb-4"> description: {{obj.description}}</p>
+                    {% else %}
+                    <p>description: none</p>
+                    {% endif %}
+                </div>
                         <button class="btn btn-primary px-3"><i class="fa fa-shopping-cart mr-1"></i> Add To
                             Favorite</button>
-                    </div>
+                    
                     <div class="d-flex pt-2">
                         <strong class="text-dark mr-2">Share on:</strong>
                         <div class="d-inline-flex">

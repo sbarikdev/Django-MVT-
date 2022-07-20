@@ -3,25 +3,34 @@ from django.http import HttpResponse
 from django.contrib.auth.models import User
 from .forms import NewTopicForm
 from django.contrib.auth.decorators import login_required
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 from .models import (Board, Topic, Post)
 # Create your views here.
 
 def contact(request):
     return render(request, 'contact.html')
-    
+
 def index(request):
     obj = Post.objects.all()[:12]
     return render(request, 'index.html', {'obj': obj})
 
 def listing(request):
     obj = Topic.objects.all()[:12]
+    page = request.GET.get('page', 1)
+    paginator = Paginator(obj, 3)
+    try:
+        objs = paginator.page(page)
+    except PageNotAnInteger:
+        objs = paginator.page(1)
+    except EmptyPage:
+        objs = paginator.page(paginator.num_pages)
     for i in obj:
         if i.image:
             print(i.image.url)
         else:
             print('no image')
-    return render(request, 'listing.html', {'obj': obj})
+    return render(request, 'listing.html', {'obj': objs})
 
 def listing_details(request, pk):
     obj = Topic.objects.get(id = pk)

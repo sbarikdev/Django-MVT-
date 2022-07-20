@@ -130,9 +130,9 @@
                         {% endif %}
                     </div>
                     <div class="text-center py-4">
-                        <a class="h6 text-decoration-none text-truncate" href="{% url 'listing_details' ob.topic.pk %}">{{ ob.topic.subject }}</a>
+                        <h2><a class="h6 text-decoration-none text-truncate" href="{% url 'listing_details' ob.topic.pk %}">{{ ob.topic.subject }}</a></h2>
                         <div class="d-flex align-items-center justify-content-center mt-2">
-                            <h5>Age: {{ob.topic.age}}</h5>
+                            <h6>Age: {{ob.topic.age}} years</h6>
                         </div>
                     </div>
                 </div>
