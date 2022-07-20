@@ -17,16 +17,22 @@ Including another URLconf
 from django.urls import path, include
 from django.contrib import admin
 from django.contrib.auth import views as auth_views
+from django.conf import settings
+from django.conf.urls.static import static
 
 from boards import views
 from accounts import views as accounts_views
 
 urlpatterns = [
-    path(r'', views.home, name='home'),
+    path(r'contact', views.contact, name='contact'),
+    path(r'index', views.home, name='home'),
+    path(r'', views.index, name='index'),
+    path(r'listing/', views.listing, name='listing'),
+    path(r'listing_details/<int:pk>', views.listing_details, name='listing_details'),
     path(r'signup/', accounts_views.signup, name='signup'),
     path(r'login/', auth_views.LoginView.as_view(template_name='login.html'), name='login'),
     path(r'logout/', auth_views.LogoutView.as_view(), name='logout'),
-    path(r'boards/(?P<pk>\d+)/', views.board_topics, name='board_topics'),
+    path(r'boards/<int:pk>', views.board_topics, name='board_topics'),
     path(r'boards/(?P<pk>\d+)/new/', views.new_topic, name='new_topic'),
     path(r'admin/', admin.site.urls),
     path(r'reset/',
@@ -51,3 +57,8 @@ urlpatterns = [
         name='password_change_done'),
 ]
 
+if settings.DEBUG:
+    urlpatterns += (
+        static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) +
+        static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+        )

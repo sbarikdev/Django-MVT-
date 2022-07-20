@@ -14,6 +14,7 @@
  <table class="table">
   <thead class="thead-inverse">
     <tr>
+      <th>Image</th>
       <th>Topic</th>
       <th>Starter</th>
       <th>Replies</th>
@@ -24,6 +25,12 @@
   <tbody>
     {% for topic in board.topics.all %}
       <tr>
+        {% if topic.image %}
+        <td><img src="http://localhost:8000/media/7.jpg" width="50" height="50"></img></td>
+        {% else %}
+        <td><p> No image </p></td>
+        {% endif %}
+        <!-- <img src="../media/foo.png"> -->
         <td>{{ topic.subject }}</td>
         <td>{{ topic.starter.username }}</td>
         <td>0</td>

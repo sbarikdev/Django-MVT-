@@ -14,7 +14,7 @@
             </tr>
         </thead>
         <tbody>
-        {% for board in boards %}
+        {% for board in boards %} 
                 <tr>
                   <td>
                     <a href="{% url 'board_topics' board.pk %}">{{ board.name }}</a>
@@ -29,3 +29,5 @@
         </tbody>
     </table>
 {% endblock %}
+
+
